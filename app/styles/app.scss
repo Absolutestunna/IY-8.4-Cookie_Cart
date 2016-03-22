@@ -1,0 +1,109 @@
+
+// Bootstrap Variables
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  background-color: #FFA;
+}
+
+.selections{
+  border: 1px solid gray;
+  width: 31%;
+  margin-right: 27px;
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+.form {
+  input {
+    width: 45%;
+    display: inline-block;
+  }
+  .select {
+    width: 25%;
+    display: inline-block;
+
+  }
+  .cart {
+    width: 27%;
+    display: inline-block;
+
+  }
+}
+
+
+.selections2{
+  border: 1px solid gray;
+  width: 31%;
+  margin-right: 27px;
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+.form2 {
+  input {
+    width: 45%;
+    display: inline-block;
+  }
+  .select2 {
+    width: 25%;
+    display: inline-block;
+
+  }
+  .cart2{
+    width: 27%;
+    display: inline-block;
+
+  }
+}
+
+.selections3{
+  border: 1px solid gray;
+  width: 31%;
+  margin-right: 27px;
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+.form3 {
+  input {
+    width: 45%;
+    display: inline-block;
+  }
+  .select3 {
+    width: 25%;
+    display: inline-block;
+
+  }
+  .cart3{
+    width: 27%;
+    display: inline-block;
+
+  }
+}
+
+
+
+
+
+
+.nav {
+  height: 33px;
+  background-color: lightgray;
+}
+
+.body {
+  margin-top: 30px;
+}
