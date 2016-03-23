@@ -19,10 +19,10 @@ $('#cart1').click(function(e){
   var name = $('#name').html();
   var quantity = $('.quantity').val();
   var size = $('.select option:selected').html();
-  var time = (new Date().getHours()*60) + new Date().getMinutes();
+  var time = (new Date().getHours() * 60) + new Date().getMinutes();
   var selectionInfo = {name: name, quantity: quantity, size: size, time: time};
   shirts.push(selectionInfo);
-  localStorage.setItem('Shirt-Info', JSON.stringify(shirts));
+  localStorage.setItem('OrderInfo', JSON.stringify(shirts));
 });
 
 $('#cart2').click(function(e){
@@ -30,9 +30,10 @@ $('#cart2').click(function(e){
   var name = $('#name2').html();
   var quantity = $('.quantity2').val();
   var size = $('.select2 option:selected').html();
-  var selectionInfo = {name: name, quantity: quantity, size: size};
+  var time = (new Date().getHours() * 60) + new Date().getMinutes();
+  var selectionInfo = {name: name, quantity: quantity, size: size, time: time};
   shirts.push(selectionInfo);
-  localStorage.setItem('Shirt-Info', JSON.stringify(shirts));
+  localStorage.setItem('OrderInfo', JSON.stringify(shirts));
 });
 
 $('#cart3').click(function(e){
@@ -40,49 +41,32 @@ $('#cart3').click(function(e){
   var name = $('#name3').html();
   var quantity = $('.quantity3').val();
   var size = $('.select3 option:selected').html();
-  var selectionInfo = {name: name, quantity: quantity, size: size};
+  console.log(new Date().getHours())
+  var time = (new Date().getHours() * 60) + new Date().getMinutes();
+  var selectionInfo = {name: name, quantity: quantity, size: size, time: time};
   shirts.push(selectionInfo);
-  localStorage.setItem('Shirt-Info', JSON.stringify(shirts));
+  localStorage.setItem('OrderInfo', JSON.stringify(shirts));
 });
 
-$('#main-page').click(mainPage);
-$('#cart').click(cart);
+// console.log(localStorage.getItem('OrderInfo'));
 
-function cart(e) {
-  // e.preventDefault();
-  // console.log(localStorage.getItem('Shirt-Info'));
-  var retrievedShirtshirts = JSON.parse(localStorage.getItem('Shirt-Info'));
-  var currentTime = new Date().getMinutes()*60;
+// console.log(localStorage.OrderInfo);
+var retrievedShirtshirts = JSON.parse(localStorage.getItem('OrderInfo'));
+var currentTime = (new Date().getHours() * 60) + new Date().getMinutes();
+var cartRow = retrievedShirtshirts.map(function(item, index){
+  var loggedTime = item.time;
+  console.log(currentTime);
+  console.log(loggedTime);
+  var cookieTime = Math.floor((currentTime - loggedTime)) + 1;
+  $('#table-row').append('<tr><th>' + index + '</th><td>' + item.name + '</td><td>' + item.size + '</td><td>' + item.quantity + '</td><td>' + cookieTime + ' mins' + '</td><td><button class="btn btn-danger remove">Remove</button></td></tr>');
+});
 
-  var cartRow = retrievedShirtshirts.map(function(item, index){
-    var loggedTime = item.time;
-    var cookieTime = Math.floor((currentTime - loggedTime)/60);
-
-    $('#table-row').append('<tr><th>'+index+'</th>' + '<td>'+item.name+'</td>' + '<td>'+item.size+'</td>' + '<td>'+item.quantity+'</td>' + '<td>'+cookieTime + ' mins '+'</td>' + '<td>'+'<button class="btn btn-danger remove" id=' + index + ' >Remove</button>'+'</td></tr>');
-  });
-
-  $('.remove').click(removeFunc);
-
-
-  function removeFunc(e){
-      var locationIndex = (e.currentTarget.id);
-      console.log(retrievedShirtshirts)
-      console.log(retrievedShirtshirts[locationIndex]);
-      retrievedShirtshirts.splice(retrievedShirtshirts[locationIndex], 1)
-      console.log(retrievedShirtshirts)
-
-
-    // console.log(localStorage.getItem('Shirt-Info'[0]));
-    //localStorage with the key of Shirt with the id of 0;
-
-    }
-
-}
-
-
-
-function mainPage(e) {
+$('.remove').click(function(e){
   e.preventDefault();
-  window.location = 'index.html';
-
-}
+  $(this).parent().parent().remove();
+});
+$('.checkout').click(function(){
+  localStorage.removeItem('OrderInfo')
+  location.reload();
+  $(this).append()
+})
