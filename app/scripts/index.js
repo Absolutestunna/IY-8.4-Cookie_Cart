@@ -41,7 +41,6 @@ $('#cart3').click(function(e){
   var name = $('#name3').html();
   var quantity = $('.quantity3').val();
   var size = $('.select3 option:selected').html();
-  console.log(new Date().getHours())
   var time = (new Date().getHours() * 60) + new Date().getMinutes();
   var selectionInfo = {name: name, quantity: quantity, size: size, time: time};
   shirts.push(selectionInfo);
@@ -66,7 +65,7 @@ $('.remove').click(function(e){
   $(this).parent().parent().remove();
 });
 $('.checkout').click(function(){
-  localStorage.removeItem('OrderInfo')
+  localStorage.removeItem('OrderInfo');
   location.reload();
-  $(this).append()
-})
+  $(this).append();
+});
